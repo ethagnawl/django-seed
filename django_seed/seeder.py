@@ -61,7 +61,7 @@ class ModelSeeder(object):
                 message = "Field {} cannot be null".format(field)
                 raise SeederException(message)
             else:
-                logging.warn(
+                logging.warning(
                     "Could not build many-to-many relationship for between {} and {}".format(
                         field,
                         related_model,
