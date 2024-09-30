@@ -125,10 +125,10 @@ class ModelSeeder(object):
                 formatters[field_name] = formatter
                 continue
 
-        for field in self.model._meta.many_to_many:
-            self.many_relations[field.name] = self.build_many_relation(
-                field, field.related_model
-            )
+        # for field in self.model._meta.many_to_many:
+        #     self.many_relations[field.name] = self.build_many_relation(
+        #         field, field.related_model
+        #     )
 
         return formatters
 
@@ -248,12 +248,12 @@ class Seeder(object):
                     # continue testing on an IntegrityError
                     with transaction.atomic():
                         executed_entity = entity.execute(using, inserted_entities)
-                        
+
                     inserted_entities[klass].append(executed_entity)
                     completed_count += 1
                 except IntegrityError as err:
                     last_error = err
-                
+
                 # Exit if the right number of entities has been inserted
                 if completed_count == number:
                     break
